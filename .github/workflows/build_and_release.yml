@@ -41,7 +41,7 @@ jobs:
       - name: Test index.js
         env:
           INPUT_GITHUB_USERNAME: "${{ github.actor }}"
-          INPUT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          INPUT_GITHUB_TOKEN: ${{ secrets.ACTION_TEST }}
           INPUT_TARGET_REPOS: '[${{ github.repository }}]'
           INPUT_OUTPUT_STYLE: MARKDOWN
           INPUT_IGNORE_EVENTS: '[]'
