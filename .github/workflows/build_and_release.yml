@@ -45,7 +45,7 @@ jobs:
         env:
           INPUT_GITHUB_USERNAME: "${{ github.actor }}"
           INPUT_GITHUB_TOKEN: ${{ secrets.ACTION_TEST }}
-          INPUT_TARGET_REPOS: '[${{ github.actor }}e/activity-log]'
+          INPUT_TARGET_REPOS: '[${{ github.actor }}/activity-log]'
           INPUT_OUTPUT_STYLE: MARKDOWN
           INPUT_IGNORE_EVENTS: '[]'
           INPUT_README_PATH: README.md
