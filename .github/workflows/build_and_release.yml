@@ -25,12 +25,15 @@ jobs:
       - name: Commit and Push
         run: |
           git config --global user.name '${{ github.actor }}'
-          git config --global user.email '${{ github.actor }}@gmail.com'
+          git config --global user.email '${{ github.actor }}@users.noreply.github.com'
           git pull origin master
-          git add .
-          git commit -m "dist build"
-          git push origin master
-
+          if [ -n "$(git status --porcelain)" ]; then
+            git add .
+            git commit -m "dist build"
+            git push origin master
+          else
+            echo "No changes to commit"
+          fi
   test:
     runs-on: ubuntu-latest
     needs: build
@@ -49,7 +52,6 @@ jobs:
           INPUT_COMMIT_MESSAGE: Update README.md
           INPUT_EVENT_LIMIT: '100'
         run: node ./dist/index.js
-
   release:
     runs-on: ubuntu-latest
     needs: test
@@ -60,7 +62,7 @@ jobs:
       - name: Pull latest
         run: |
           git config --global user.name '${{ github.actor }}'
-          git config --global user.email '${{ github.actor }}@gmail.com'
+          git config --global user.email '${{ github.actor }}@users.noreply.github.com'
           git pull origin master
       - name: Tag it
         run: |
